@@ -130,7 +130,7 @@ class OrderableMixin(object):
             ).update(sort_order=F('sort_order') - 1)
 
         obj_to_move.sort_order = position
-        obj_to_move.save()
+        obj_to_move.save(update_fields=['sort_order'])
         return HttpResponse(response)
 
     def get_index_view_extra_css(self):
