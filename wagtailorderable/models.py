@@ -17,7 +17,7 @@ class Orderable(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk is None:
-            self.sort_order = self.__class__.objects.aggregate(Max('sort_order'))['sort_order__max'] or 0 + 1
+            self.sort_order = (self.__class__.objects.aggregate(Max('sort_order'))['sort_order__max'] or 0) + 1
         super().save(*args, **kwargs)
 
     class Meta:
